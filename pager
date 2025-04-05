@@ -1,0 +1,41 @@
+#!/bin/bash
+# 📟 deb-pager CLI Entrypoint
+
+SCRIPTS_DIR="/usr/local/share/deb-pager/scripts"
+
+show_menu() {
+  echo "🧙‍♂️ Welcome to deb-pager!"
+  echo "Choose your action:"
+  echo "-----------------------"
+  echo "1️⃣  Update System"
+  echo "2️⃣  Clean Cache"
+  echo "3️⃣  Remove Orphans"
+  echo "0️⃣  Exit"
+  echo "-----------------------"
+}
+
+while true; do
+  show_menu
+  read -p "👉 Enter your choice [0-3]: " choice
+
+  case $choice in
+    1)
+      bash "$SCRIPTS_DIR/update.sh"
+      ;;
+    2)
+      bash "$SCRIPTS_DIR/clean_cache.sh"
+      ;;
+    3)
+      bash "$SCRIPTS_DIR/remove_orphans.sh"
+      ;;
+    0)
+      echo "👋 Exiting deb-pager. See you next time!"
+      break
+      ;;
+    *)
+      echo "❌ Invalid choice. Please try again."
+      ;;
+  esac
+
+  echo ""  # Add spacing between loops
+done
